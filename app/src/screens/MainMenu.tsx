@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigation, BottomNavigationTab, Layout, Text } from '@ui-kitten/components';
 import HomeScreen from './HomeScreen';
 import SettingsScreen from './SettingsScreen';
+import ChordTest from './ChordTest';
+
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -26,6 +28,7 @@ const BottomTabBar = ({ navigation, state }:any) => (
       <BottomNavigationTab title='Home'/>
       <BottomNavigationTab title='Latest News'/>
       <BottomNavigationTab title='Settings'/>
+      <BottomNavigationTab title='ChordTest'/>
     </BottomNavigation>
   );
   
@@ -34,6 +37,7 @@ const BottomTabBar = ({ navigation, state }:any) => (
       <Screen name='Home' component={HomeScreen}/>
       <Screen name='Latest News' component={HomeScreen}/>
       <Screen name='Settings' component={SettingsScreen}/>
+      <Screen name='ChordTest' component={ChordTest}/>
     </Navigator>
   );
   
