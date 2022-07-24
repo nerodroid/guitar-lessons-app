@@ -10,7 +10,11 @@ const addUser = async (req, res, next) => {
     const user = new User(userObject)
     user.save((error, user) => {
         if (error) {
-            next(error)
+            if (error.code === 11000) {
+                res.status(409).send({ "message": "User already exists with this username" })
+            } else {
+                next(error)
+            }
             console.error("Error while adding user.")
         } else {
             res.status(200).send({ "message": "User added" })

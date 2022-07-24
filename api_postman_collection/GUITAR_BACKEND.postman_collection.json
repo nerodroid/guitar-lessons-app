@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "32e3204b-6b35-4a84-931e-e54731386814",
+		"name": "GUITAR_BACKEND",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get-users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS-TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNoYW1hbGthNCIsImlhdCI6MTY1ODY3MDY0OSwiZXhwIjoxNjU4NjcwOTQ5fQ.-VUU_m61bivTkTVeKLUxrc3Gap8qWpGIsXSagxDWWr0",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{HOST-LOCAL}}/users",
+					"host": [
+						"{{HOST-LOCAL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"shamalka5\",\n    \"password\":\"Pass@123\",\n    \"firstName\":\"Shamalka\",\n    \"lastName\":\"Navod\",\n    \"email\":\"shamalka@gmail.com\",\n    \"userType\":\"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST-LOCAL}}/users",
+					"host": [
+						"{{HOST-LOCAL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"ACCESS-TOKEN\", jsonData.accessToken);",
+							"",
+							"pm.test(\"Successful Login test\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"shamalka4\",\n    \"password\":\"snov@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST-LOCAL}}/auth/login",
+					"host": [
+						"{{HOST-LOCAL}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"shamalka4\",\n    \"password\":\"snov@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST-LOCAL}}/auth/logout?username=shamalka4",
+					"host": [
+						"{{HOST-LOCAL}}"
+					],
+					"path": [
+						"auth",
+						"logout"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "shamalka4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth-token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNoYW1hbGthNCIsImlhdCI6MTY1NTc0NjA2NH0.zzJP349VKyVx1GIkrlnXnIvxvZ4t_p1vIjAfxZ1usSI\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST-LOCAL}}/auth/token",
+					"host": [
+						"{{HOST-LOCAL}}"
+					],
+					"path": [
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-content",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS-TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"President raises unofficial concerns with Colombo based diplomats over statements\",\n    \"featuredContent\":\"Diplomats were briefed by the President on the military operations conducted to clear the protestors from the Presidential Secretariat area, but the diplomats were requested to check with the authorities as well to clarify matters when making statements in the future...\",\n    \"fullContent\": \"KiotIERpcGxvbWF0cyB3ZXJlIGJyaWVmZWQgYnkgdGhlIFByZXNpZGVudCBvbiB0aGUgbWlsaXRhcnkgb3BlcmF0aW9ucyBjb25kdWN0ZWQgdG8gY2xlYXIgdGhlIHByb3Rlc3RvcnMgZnJvbSB0aGUgUHJlc2lkZW50aWFsIFNlY3JldGFyaWF0IGFyZWEsIGJ1dCB0aGUgZGlwbG9tYXRzIHdlcmUgcmVxdWVzdGVkIHRvIGNoZWNrIHdpdGggdGhlIGF1dGhvcml0aWVzIGFzIHdlbGwgdG8gY2xhcmlmeSBtYXR0ZXJzIHdoZW4gbWFraW5nIHN0YXRlbWVudHMgaW4gdGhlIGZ1dHVyZSoqCgoqKi0gUHJlc2lkZW50IFdpY2tyZW1lc2luZ2hlIGluIGEgbGlnaHQgdG9uZSBhc2tlZCBzb21lIG9mIHRoZSBkaXBsb21hdHMgaWYgcHJvdGVzdG9ycyBjb3VsZCBpbGxlZ2FsbHkgb2NjdXB5IHRoZSBQcmVzaWRlbnQncyBPZmZpY2UgaW4gdGhlaXIgcmVzcGVjdGl2ZSBjb3VudHJpZXMqKgoKLSAqKkhlIGluZm9ybWVkIHRoZW0gdGhhdCB0aGUgcHJvdGVzdG9ycyBoYWQgYmVlbiBpbmZvcm1lZCB0byB2YWNhdGUgdGhlIGFyZWEgYnkgNiBhbSB5ZXN0ZXJkYXkgYnV0IHRoZSBwcm90ZXN0b3JzIGhhZCByZWZ1c2VkIGFuZCBpbnN0ZWFkIHByb3ZpZGVkIGFuIGFsdGVybmF0aXZlIHRpbWUgd2hpY2ggd2FzIG5vdCBhY2NlcHRlZCBieSB0aGUgYXV0aG9yaXRpZXMqKgoKKipCeSBKQU1JTEEgSFVTQUlOKioKCj4gVGhlIERhaWx5IE1pcnJvciBsZWFybnMgdGhhdCB0aGUgZGlwbG9tYXRzIHdlcmUgYnJpZWZlZCBieSB0aGUKPiBQcmVzaWRlbnQgb24gdGhlIG1pbGl0YXJ5IG9wZXJhdGlvbnMgY29uZHVjdGVkIHRvIGNsZWFyIHRoZSBwcm90ZXN0b3JzCj4gZnJvbSB0aGUgUHJlc2lkZW50aWFsIFNlY3JldGFyaWF0IGFyZWEsIGJ1dCB0aGUgZGlwbG9tYXRzIHdlcmUKPiByZXF1ZXN0ZWQgdG8gY2hlY2sgd2l0aCB0aGUgYXV0aG9yaXRpZXMgYXMgd2VsbCB0byBjbGFyaWZ5IG1hdHRlcnMKPiB3aGVuIG1ha2luZyBzdGF0ZW1lbnRzIGluIHRoZSBmdXR1cmUuCgpQcmVzaWRlbnQgUmFuaWwgV2lja3JlbWVzaW5naGUgeWVzdGVyZGF5IGV2ZW5pbmcgaW52aXRlZCB0aGUgQ29sb21ibyBiYXNlZCBkaXBsb21hdHMgdG8gdGhlIFByZXNpZGVudCdzIE9mZmljZSBkdXJpbmcgd2hpY2ggdW5vZmZpY2lhbCBjb25jZXJucyB3ZXJlIHJhaXNlZCBvdmVyIHRoZWlyIHN0YXRlbWVudHMgcmVsZWFzZWQgb3ZlciB0aGUgb3BlcmF0aW9uIGNhcnJpZWQgb3V0IGJ5IHRoZSBzZWN1cml0eSBmb3JjZXMgdG8gY2xlYXIgdGhlIFByZXNpZGVudGlhbCBTZWNyZXRhcmlhdCBhcmVhLg==\",\n    \"thumbnail\":\"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg\",\n    \"author\":\"shamalka4\",\n    \"viewCount\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST-LOCAL}}/content",
+					"host": [
+						"{{HOST-LOCAL}}"
+					],
+					"path": [
+						"content"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-content",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS-TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST-LOCAL}}/content",
+					"host": [
+						"{{HOST-LOCAL}}"
+					],
+					"path": [
+						"content"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
