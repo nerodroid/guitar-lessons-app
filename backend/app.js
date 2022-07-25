@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
+import contentRoutes from "./routes/contentRoutes.js"
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -26,5 +27,6 @@ mongoose.connect(dbString, connectionParams).then(() => {
 
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
+app.use('/content', contentRoutes)
 
 export default app;
