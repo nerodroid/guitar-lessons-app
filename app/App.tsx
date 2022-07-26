@@ -21,7 +21,6 @@ import SingleNewsScreen from './src/screens/SingleNewsScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import RegScreen from './src/screens/RegScreen';
 
-
 import { Provider } from 'react-redux';
 import 'react-native-gesture-handler';
 
@@ -44,12 +43,11 @@ const App = () => {
 
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="LoginRegScreen" component={LoginScreen} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegScreen" component={RegScreen} />
-            
-            <Stack.Screen name="BottomTabMenu" component={BottomTabMenu} />
-            <Stack.Screen name="SingleNewsScreen" component={SingleNewsScreen} />
-            <Stack.Screen name="FullStoryWebView" component={FullStoryWebView} />
+          <Stack.Screen name="BottomTabMenu" component={BottomTabMenu} />
+          <Stack.Screen name="SingleNewsScreen" component={SingleNewsScreen} />
+          <Stack.Screen name="FullStoryWebView" component={FullStoryWebView} />
           </Stack.Navigator>
         </NavigationContainer>
       </ApplicationProvider>

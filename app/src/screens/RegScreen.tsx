@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
     
   },
   textInput: {
-    height: 40,
+    height: 35,
     width: '100%',
-    margin: 10,
+    margin: 5,
     
     backgroundColor: 'white',
     borderColor: 'gray',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const RegScreen = () => {
+const RegScreen = ({ navigation }: {navigation: any}) => {
     /* {
         "username":"shamalka5",
         "password":"Pass@123",
@@ -218,7 +218,7 @@ const RegScreen = () => {
 
               <Button
                 onPress={()=>handleSubmit()}
-                style={ { marginTop:20,}}
+                style={ { marginTop:20,  backgroundColor: 'red'}}
                 disabled={!isValid}
                 >Submit</Button>
 
@@ -228,6 +228,11 @@ const RegScreen = () => {
            )}
           </Formik>
         </View>
+
+        <Button
+            onPress={()=>navigation.navigate("LoginScreen")}
+            style={ { marginTop:20}}   
+            >Login</Button> 
     </Layout>
   );
 }

@@ -10,6 +10,7 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
 
@@ -47,10 +48,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: {navigation: any}) => {
 
   var initialValues = { email: '', password: '' };
   
+  //const navigation =  useNavigation();
   const [loginError,setLoginError]= useState("");
 
   const sendPostRequest = async () => {
@@ -145,7 +147,16 @@ const LoginScreen = () => {
               
            )}
           </Formik>
+
+
+              
+
         </View>
+
+        <Button
+            onPress={()=>navigation.navigate("RegScreen")}
+            style={ { marginTop:20, backgroundColor: 'red'}}   
+            >Register</Button>  
     </Layout>
   );
 }
