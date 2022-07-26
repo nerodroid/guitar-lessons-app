@@ -6,7 +6,6 @@ import HomeScreen from './HomeScreen';
 import SettingsScreen from './SettingsScreen';
 import ChordTest from './ChordTest';
 
-
 const { Navigator, Screen } = createBottomTabNavigator();
 
 const UsersScreen = () => (
