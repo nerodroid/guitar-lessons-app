@@ -1,10 +1,12 @@
 import express from 'express';
-import { addUser, getUsers } from '../controllers/userController.js';
+import { addUser, getUsers, getUser } from '../controllers/userController.js';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
 router.get('/', authenticateToken, getUsers)
+
+router.get('/:username', authenticateToken, getUser)
 
 router.post('/', addUser)
 

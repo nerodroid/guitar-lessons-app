@@ -34,7 +34,12 @@ const Home = () => {
         (state) => state.appWindowSize.value
     )
 
+    const userData = useSelector(
+        (state) => state.user
+    )
+
     useEffect(() => {
+        console.log('uu',userData)
         if (appWindowSize === "full") {
             setIsCollapsed(false)
         } else {

@@ -5,7 +5,7 @@ const ProtectedRoute = ({ component }) => {
     if (localStorage.getItem("isLoggedIn")==="true") {
         return component;
     } else {
-        return <Navigate to="/unauthorized"/>;
+        return <Navigate to="/login"/>;
     }
 }
 

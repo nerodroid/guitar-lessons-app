@@ -39,7 +39,25 @@ const getUsers = async (req, res) => {
     })
 }
 
+const getUser = async (req, res) => {
+    const usersProjection = {
+        password: false,
+        _id: false,
+        __v: false
+    };
+
+    User.findOne({username: req.params.username}, usersProjection, (error, user) => {
+        if (error) {
+            next(error)
+            console.error("Error while retrieving user.")
+        } else {
+            res.status(200).send(user)
+        }
+    })
+}
+
 export {
     addUser,
-    getUsers
+    getUsers,
+    getUser
 }
