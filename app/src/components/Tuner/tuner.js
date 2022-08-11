@@ -23,6 +23,8 @@ export default class Tuner {
     this.sampleRate = sampleRate;
     this.bufferSize = bufferSize;
     this.pitchFinder = new PitchFinder.YIN({ sampleRate: this.sampleRate });
+    this.onNoteDetected = undefined;
+    this._lastNoteName = '';
   }
 
   start() {

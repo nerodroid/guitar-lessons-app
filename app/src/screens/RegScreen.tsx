@@ -115,7 +115,6 @@ const RegScreen = ({ navigation }: { navigation: any }) => {
     lastName: Yup.string()
       //.email("Please enter valid email")
       .required("Email Address is Required"),
-
     password: Yup.string()
       .min(8, ({ min }) => `Password must be at least ${min} characters`)
       .required("Password is required"),
@@ -166,7 +165,6 @@ const RegScreen = ({ navigation }: { navigation: any }) => {
                     : ""}
                 </Text>
               }
-
               <TextInput
                 placeholder="Last Name"
                 style={styles.textInput}

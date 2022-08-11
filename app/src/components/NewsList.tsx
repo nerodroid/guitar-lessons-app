@@ -53,7 +53,7 @@ const NewsList = ({ filters, navigation, newsType }: any) => {
         setNewsData([...newsData, ...response.data.articles]);
       } else {
         setIsEmpty(true)
-      }
+      }+
       setIsLoading(false)
     }).catch(error => {
       setIsLoading(false)

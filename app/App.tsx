@@ -8,6 +8,18 @@
  * @format
  */
 
+ if (__DEV__) {
+  import('./Reactotron-config').then(() =>
+    console.log('Reactotron Configured'),
+  );
+}
+
+import {AppRegistry} from 'react-native';
+import {name as appName} from './app.json';
+
+AppRegistry.registerComponent(appName, () => App);
+
+
 import React from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
