@@ -8,6 +8,18 @@
  * @format
  */
 
+ if (__DEV__) {
+  import('./Reactotron-config').then(() =>
+    console.log('Reactotron Configured'),
+  );
+}
+
+import {AppRegistry} from 'react-native';
+import {name as appName} from './app.json';
+
+AppRegistry.registerComponent(appName, () => App);
+
+
 import React from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
@@ -18,6 +30,9 @@ import Carousel from './src/components/Carousel';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SingleNewsScreen from './src/screens/SingleNewsScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import RegScreen from './src/screens/RegScreen';
+
 import { Provider } from 'react-redux';
 import 'react-native-gesture-handler';
 
@@ -40,9 +55,11 @@ const App = () => {
 
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="BottomTabMenu" component={BottomTabMenu} />
-            <Stack.Screen name="SingleNewsScreen" component={SingleNewsScreen} />
-            <Stack.Screen name="FullStoryWebView" component={FullStoryWebView} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="RegScreen" component={RegScreen} />
+          <Stack.Screen name="BottomTabMenu" component={BottomTabMenu} />
+          <Stack.Screen name="SingleNewsScreen" component={SingleNewsScreen} />
+          <Stack.Screen name="FullStoryWebView" component={FullStoryWebView} />
           </Stack.Navigator>
         </NavigationContainer>
       </ApplicationProvider>
