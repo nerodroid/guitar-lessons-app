@@ -21,7 +21,7 @@ const tabsArray = [
     { route: 'SearchNews', label: 'SearchNews', type: Icons.MaterialCommunityIcons, activeIcon: 'text-box-search', inActiveIcon: 'text-box-search-outline', component: SearchNewsScreen },
     { route: 'Like', label: 'Like', type: Icons.MaterialCommunityIcons, activeIcon: 'fire', inActiveIcon: 'fire-outline', component: SettingsScreen },
     { route: 'Search', label: 'Search', type: Icons.MaterialCommunityIcons, activeIcon: 'menu', inActiveIcon: 'menu-outline', component: HomeScreen },
-    { route: 'ChordTest', label: 'ChordTest', type: Icons.MaterialCommunityIcons, activeIcon: 'chords', inActiveIcon: 'menu-outline', component: ChordTest },
+    { route: 'ChordTest', label: 'ChordTest', type: Icons.MaterialCommunityIcons, activeIcon: 'music', inActiveIcon: 'menu-outline', component: ChordTest },
 ]
 
 const TabBarButton = (props: any) => {
