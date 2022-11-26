@@ -4,6 +4,7 @@ import authRoutes from "./routes/authRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 import contentRoutes from "./routes/contentRoutes.js"
 import dotenv from 'dotenv'
+import cors from 'cors';
 dotenv.config()
 
 const app = express();
@@ -11,6 +12,8 @@ const app = express();
 // middleware
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
 
 const dbString = process.env.MONGODB_ATALS_CONNECTION_STRING
 

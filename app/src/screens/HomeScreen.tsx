@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as eva from '@eva-design/eva';
 import Carousel from '../components/Carousel';
 import { StyleSheet, Text, View } from 'react-native';
 import NewsListItem from '../components/NewsListItem';
 import NewsList from '../components/NewsList';
+import useApiRequestHandler from '../utils/useApiRequestHandler';
 
 const carouselData: any = [
   {
@@ -40,11 +41,34 @@ const carouselData: any = [
 
 
 const HomeScreen = ({ navigation }: any) => {
+
+  const { apiRequest } = useApiRequestHandler()
+
+  useEffect(() => {
+    getArticles()
+  },[])
+
+  const getArticles = () => {
+    const requestConfig = {
+        method: "GET",
+        url: "http://10.0.2.2:5000/content",
+        // params: queryParams
+    };
+    apiRequest(requestConfig).then((response:any) => {
+        if (response.status === 200) {
+            console.log(response.data[0])
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+
+  }
+
   return (
     <View style={{ backgroundColor: '#fff', flex: 1 }}>
       <Carousel />
       <Text style={styles.latestNewsText}>Top Headlines</Text>
-      <NewsList filters={{}} navigation={navigation} newsType={"headlines"}/>
+      {/* <NewsList filters={{}} navigation={navigation} newsType={"headlines"}/> */}
     </View>
   );
 }

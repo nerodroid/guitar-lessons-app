@@ -6,11 +6,12 @@ import { Provider } from "react-redux";
 import App from "./App";
 import "./App.css";
 import appWindowSizeReducer from "./features/appWindowSize";
-
+import userReducer from "./features/user";
 
 const store = configureStore({
     reducer: {
-        appWindowSize: appWindowSizeReducer
+        appWindowSize: appWindowSizeReducer,
+        user: userReducer
     }
 })
 

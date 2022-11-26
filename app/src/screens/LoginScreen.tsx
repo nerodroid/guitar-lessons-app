@@ -7,6 +7,9 @@ import { Formik } from "formik";
 import axios from "axios";
 import { View, StyleSheet, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setAccessToken, setNewsData } from "../redux/actions";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
   loginContainer: {
@@ -48,6 +51,9 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
   //const navigation =  useNavigation();
   const [loginError, setLoginError] = useState("");
 
+  const dispatch = useDispatch();
+  const newsData = useSelector((state: RootStateOrAny) => state.newsReducer);
+
   const sendPostRequest = async () => {
     try {
       const resp = await axios.post("http://10.0.0.2:5000/auth/login", {
@@ -62,19 +68,32 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
     }
   };
 
+  useEffect(() => {
+    checkIsLoggedIn()
+  }, [])
+
+  const checkIsLoggedIn = async () => {
+    const isLoggedIn = await AsyncStorage.getItem('@isLoggedIn')
+    if(isLoggedIn === "true") {
+      navigation.navigate("BottomTabMenu")
+    }
+  }
+
   const loginAPICall = (loginValues: { email: string; password: string }) => {
     axios
       .post("http://10.0.2.2:5000/auth/login", {
         username: loginValues.email,
         password: loginValues.password,
       })
-      .then((response) => {
-        console.log(response.data);
+      .then(async (response) => {
+        await AsyncStorage.setItem('@refresh_token', response.data.refreshToken)
+        await AsyncStorage.setItem('@isLoggedIn', "true")
+        dispatch(setAccessToken(response.data.accessToken))
         setLoginError("");
+        navigation.navigate("BottomTabMenu")
       })
       .catch((error) => {
         setLoginError(error.response.data.message.toString());
-        console.log(error.response.data.message);
       });
   };
 
