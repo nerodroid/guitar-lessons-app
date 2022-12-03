@@ -56,7 +56,7 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
 
   const sendPostRequest = async () => {
     try {
-      const resp = await axios.post("http://10.0.0.2:5000/auth/login", {
+      const resp = await axios.post("http://10.0.0.2:5001/auth/login", {
         data: {
           username: "shamalka4",
           password: "snov@123",
@@ -80,8 +80,10 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
   }
 
   const loginAPICall = (loginValues: { email: string; password: string }) => {
+
+    navigation.navigate("BottomTabMenu");
     axios
-      .post("http://10.0.2.2:5000/auth/login", {
+      .post("http://10.0.2.2:5001/auth/login", {
         username: loginValues.email,
         password: loginValues.password,
       })
@@ -91,8 +93,10 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
         dispatch(setAccessToken(response.data.accessToken))
         setLoginError("");
         navigation.navigate("BottomTabMenu")
+        
       })
       .catch((error) => {
+        console.log('login:', error);
         setLoginError(error.response.data.message.toString());
       });
   };

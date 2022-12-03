@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import * as eva from '@eva-design/eva';
 import Carousel from '../components/Carousel';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import NewsListItem from '../components/NewsListItem';
 import NewsList from '../components/NewsList';
 import useApiRequestHandler from '../utils/useApiRequestHandler';
+import MenuItem from '../components/mainMenu/menuItem';
+
 
 const carouselData: any = [
   {
@@ -51,7 +53,7 @@ const HomeScreen = ({ navigation }: any) => {
   const getArticles = () => {
     const requestConfig = {
         method: "GET",
-        url: "http://10.0.2.2:5000/content",
+        url: "http://10.0.2.2:5001/content",
         // params: queryParams
     };
     apiRequest(requestConfig).then((response:any) => {
@@ -67,7 +69,9 @@ const HomeScreen = ({ navigation }: any) => {
   return (
     <View style={{ backgroundColor: '#fff', flex: 1 }}>
       <Carousel />
-      <Text style={styles.latestNewsText}>Top Headlines</Text>
+      <Text style={styles.latestNewsText}>Main Menu</Text>
+      <MenuItem title={'CHORDS'} color={'red'} />
+      
       {/* <NewsList filters={{}} navigation={navigation} newsType={"headlines"}/> */}
     </View>
   );

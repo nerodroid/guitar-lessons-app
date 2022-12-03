@@ -53,7 +53,7 @@ export default function useApiRequestHandler() {
 
     const refreshTokenCall = async(refreshToken:string|null, requestConfig:any):Promise<string> => {
         return axios
-            .post("http://10.0.2.2:5000/auth/token", {
+            .post("http://10.0.2.2:5001/auth/token", {
                 refreshToken: refreshToken,
             })
             .then((response) => {
